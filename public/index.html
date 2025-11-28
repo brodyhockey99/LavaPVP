@@ -1,146 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lava PvP Prototype</title>
-  <!-- Tailwind Play CDN for quick styles -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAVA PvP</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* small extra tweaks */
-    body { background: radial-gradient(ellipse at bottom, #0b1220 0%, #03060a 100%); }
-  </style>
 </head>
-<body class="min-h-screen text-slate-100 antialiased">
-  <div id="root" class="p-6"></div>
+<body class="bg-gradient-to-b from-indigo-900 via-purple-900 to-black text-white h-screen flex flex-col">
 
-  <!-- React + ReactDOM (UMD) -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <!-- Babel (for in-browser JSX transpile - OK for prototypes) -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Top bar -->
+  <header class="flex justify-between items-center p-4">
+    <h1 class="text-4xl font-extrabold">LAVA PvP</h1>
+    <div class="space-x-4">
+      <a href="settings.html" class="hover:text-yellow-400">Settings</a>
+      <a href="profile.html" class="hover:text-yellow-400">Profile</a>
+    </div>
+  </header>
 
-  <!-- App (JSX) -->
-  <script type="text/babel">
+  <!-- Center main panel -->
+  <main class="flex-1 flex flex-col items-center justify-center gap-6">
+    <a href="play.html" class="bg-emerald-600 text-black px-12 py-4 rounded-3xl text-2xl font-bold hover:bg-emerald-500 transition">PLAY</a>
 
-  const { useState, useEffect } = React;
+    <div class="flex gap-4">
+      <a href="battlepass.html" class="bg-slate-800 px-6 py-2 rounded hover:bg-slate-700">Battle Pass</a>
+      <a href="shop.html" class="bg-slate-800 px-6 py-2 rounded hover:bg-slate-700">Shop</a>
+      <a href="quests.html" class="bg-slate-800 px-6 py-2 rounded hover:bg-slate-700">Quests</a>
+      <a href="operators.html" class="bg-slate-800 px-6 py-2 rounded hover:bg-slate-700">Operators</a>
+    </div>
+  </main>
 
-  function App() {
-    const [tab, setTab] = useState('home');
-    const [selectedOperator, setSelectedOperator] = useState('wallshot');
-    const [abilities, setAbilities] = useState(null);
+  <!-- Footer / optional map preview -->
+  <footer class="p-4 text-center text-sm text-slate-400">
+    <img src="assets/map_sketch.svg" alt="Map Preview" class="mx-auto w-64 h-64">
+    <p class="mt-2">Arena Preview</p>
+  </footer>
 
-    const ops = [
-      { id: 'wallshot', name: 'Wallshot', icon: 'assets/icons/wallshot.svg' },
-      { id: 'flashguard', name: 'Flashguard', icon: 'assets/icons/flashguard.svg' },
-      { id: 'duelmaster', name: 'Duelmaster', icon: 'assets/icons/duelmaster.svg' },
-      { id: 'gravitybreaker', name: 'Gravity Breaker', icon: 'assets/icons/gravitybreaker.svg' },
-    ];
-
-    useEffect(() => {
-      fetch('design/abilities.json').then(r=>r.json()).then(setAbilities).catch(e=>console.error(e));
-    }, []);
-
-    const renderTab = () => {
-      if (tab === 'home') return (
-        <div>
-          <h2 className="text-2xl font-bold mb-3">Featured</h2>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-slate-800 rounded-lg">
-              <h3 className="font-semibold">Daily Mode: Lava Rush</h3>
-              <p className="text-sm">Small circle arena with rising lava. Movement emphasized.</p>
-            </div>
-            <div className="p-4 bg-slate-800 rounded-lg">
-              <h3 className="font-semibold">Seasonal Event</h3>
-              <p className="text-sm">Pixel skins and limited-time operator variants.</p>
-            </div>
-          </div>
-        </div>
-      );
-      if (tab === 'operators') return (
-        <div>
-          <h2 className="text-2xl font-bold mb-3">Choose Operator</h2>
-          <div className="grid grid-cols-4 gap-4">
-            {ops.map(op => (
-              <button key={op.id} onClick={() => setSelectedOperator(op.id)} className={`p-3 rounded-lg ${selectedOperator===op.id? 'bg-indigo-700':'bg-slate-800'}`}>
-                <div className="flex flex-col items-center gap-2">
-                  <img src={op.icon} alt={op.name} className="w-20 h-20" />
-                  <div className="font-semibold">{op.name}</div>
-                </div>
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-4 p-4 bg-slate-800 rounded-lg">
-            <h3 className="font-semibold">Selected: {selectedOperator}</h3>
-            <pre className="text-xs mt-2 p-2 bg-slate-900 rounded h-40 overflow-auto">
-{abilities ? JSON.stringify(abilities.operators.find(o=>o.id===selectedOperator), null, 2) : 'Loading abilities...'}
-            </pre>
-          </div>
-        </div>
-      );
-      if (tab === 'battlepass') return (
-        <div>
-          <h2 className="text-2xl font-bold mb-3">Battle Pass (Season 1)</h2>
-          <div className="flex gap-3">
-            <div className="flex-1 p-3 bg-slate-800 rounded-lg">Tier preview bar (static)</div>
-            <div className="w-48 p-3 bg-slate-800 rounded-lg">Progress: <strong>12 / 100</strong></div>
-          </div>
-        </div>
-      );
-      if (tab === 'shop') return (
-        <div>
-          <h2 className="text-2xl font-bold mb-3">Shop</h2>
-          <div className="grid grid-cols-3 gap-3">
-            <div className="p-3 bg-slate-800 rounded-lg">Skin A</div>
-            <div className="p-3 bg-slate-800 rounded-lg">Skin B</div>
-            <div className="p-3 bg-slate-800 rounded-lg">Emote</div>
-          </div>
-        </div>
-      );
-      if (tab === 'quests') return (
-        <div>
-          <h2 className="text-2xl font-bold mb-3">Quests</h2>
-          <ul className="list-disc ml-6 space-y-2">
-            <li>Win 2 matches</li>
-            <li>Use Duelmaster to win a 1v1</li>
-            <li>Deal 1500 damage</li>
-          </ul>
-        </div>
-      );
-      return null;
-    };
-
-    return (
-      <div className="max-w-6xl mx-auto grid grid-cols-3 gap-6 p-6">
-        <aside className="col-span-1 bg-slate-900 p-4 rounded-lg">
-          <h1 className="text-3xl font-extrabold mb-4">LAVA PvP</h1>
-          <nav className="flex flex-col gap-3">
-            {['home','battlepass','shop','operators','quests'].map(t=> (
-              <button key={t} onClick={()=>setTab(t)} className={`text-left p-2 rounded ${tab===t? 'bg-indigo-700':''}`}>{t}</button>
-            ))}
-            <div className="mt-4">
-              <button className="w-full py-2 bg-emerald-600 rounded">Play</button>
-            </div>
-          </nav>
-        </aside>
-        <section className="col-span-2 bg-slate-900 p-4 rounded-lg">
-          {renderTab()}
-          <div className="mt-6 p-3 bg-slate-800 rounded-lg">
-            <h3 className="font-semibold">Arena Preview</h3>
-            <div className="mt-3 flex gap-4 items-center">
-              <img src="assets/map_sketch.svg" alt="map" className="w-56 h-56 bg-black rounded" />
-              <div className="text-sm text-slate-300">Small circular arena with 8 platforms and rising lava ring.</div>
-            </div>
-          </div>
-        </section>
-      </div>
-    );
-  }
-
-  const root = ReactDOM.createRoot(document.getElementById('root'));
-  root.render(<App />);
-
-  </script>
 </body>
 </html>
