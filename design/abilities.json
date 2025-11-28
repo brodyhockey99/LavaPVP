@@ -1,0 +1,43 @@
+{
+  "operators": [
+    {
+      "id": "wallshot",
+      "name": "Wallshot",
+      "description": "Deploys a one-way transparent wall that Wallshot can shoot through. Enemies cannot shoot through the wall.",
+      "duration_seconds": 12,
+      "cooldown_seconds": 30,
+      "deploy_time": 0.6,
+      "notes": "Wall persists for `duration_seconds`. Shooting through the wall reduces player recoil by 10%. Only one wall active per player."
+    },
+    {
+      "id": "flashguard",
+      "name": "Flashguard",
+      "description": "Emits a flash that blinds (90% screen fog) players who are looking toward Flashguard when it triggers.",
+      "windup_seconds": 0.9,
+      "flash_duration_seconds": 3.0,
+      "cooldown_seconds": 22,
+      "angle_cone_degrees": 120,
+      "notes": "If the enemy looks away before windup completes, they avoid the flash. Friendly players are unaffected."
+    },
+    {
+      "id": "duelmaster",
+      "name": "Duelmaster",
+      "description": "Teleports Duelmaster and the nearest enemy within 20 meters into a 1v1 duel room. The loser dies; the winner returns.",
+      "search_radius_meters": 20,
+      "duel_duration_seconds": 18,
+      "cooldown_seconds": 60,
+      "teleport_time": 0.8,
+      "notes": "Duel room is small, no cover, and has low gravity (optional). If no enemy found, ability fails and refunds 50% cooldown."
+    },
+    {
+      "id": "gravitybreaker",
+      "name": "Gravity Breaker",
+      "description": "Creates a short-range gravity field that pulls enemies toward the field center and reduces their jump by 60%.",
+      "radius_meters": 6,
+      "duration_seconds": 8,
+      "cooldown_seconds": 28,
+      "deploy_time": 0.5,
+      "notes": "Players pulled off platform edges are vulnerable to lava fall; works on bots."
+    }
+  ]
+}
