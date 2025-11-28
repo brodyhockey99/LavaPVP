@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256">
+  <rect width="64" height="64" fill="#071124"/>
+  <!-- magnet / gravity swirl -->
+  <path d="M32 16 C40 20, 44 28, 40 36 C36 44, 28 44, 24 36 C20 28, 24 20, 32 16 Z" fill="#c7f9cc"/>
+  <circle cx="32" cy="32" r="4" fill="#0ea5a0"/>
+  <g fill="#94a3b8">
+    <rect x="10" y="50" width="44" height="6" rx="3"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256">
+  <rect width="64" height="64" fill="#111827"/>
+  <!-- head icon -->
+  <circle cx="32" cy="28" r="10" fill="#f97316"/>
+  <!-- eye beam -->
+  <path d="M18 26 L44 14" stroke="#fef08a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M18 30 L44 42" stroke="#fef08a" stroke-width="4" stroke-linecap="round"/>
+  <!-- flash star -->
+  <polygon points="32,6 36,18 48,18 38,26 42,38 32,30 22,38 26,26 16,18 28,18" fill="#fef08a" opacity="0.9"/>
+</svg>
