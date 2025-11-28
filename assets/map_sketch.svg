@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#071124"/>
+  <!-- main circle arena -->
+  <circle cx="400" cy="400" r="260" fill="#0b1220" stroke="#94a3b8" stroke-width="4"/>
+  <!-- center platform -->
+  <circle cx="400" cy="400" r="60" fill="#17233a" stroke="#60a5fa" stroke-width="3"/>
+  <!-- radial platforms (8) -->
+  <g fill="#0f1724">
+    <rect x="368" y="112" width="64" height="36" rx="6" transform="rotate(0 400 400)" />
+    <rect x="600" y="368" width="64" height="36" rx="6" transform="rotate(90 400 400)" />
+    <rect x="368" y="660" width="64" height="36" rx="6" transform="rotate(180 400 400)" />
+    <rect x="112" y="368" width="64" height="36" rx="6" transform="rotate(270 400 400)" />
+    <rect x="572" y="136" width="64" height="36" rx="6" transform="rotate(45 400 400)" />
+    <rect x="572" y="644" width="64" height="36" rx="6" transform="rotate(135 400 400)" />
+    <rect x="136" y="572" width="64" height="36" rx="6" transform="rotate(-45 400 400)" />
+    <rect x="136" y="136" width="64" height="36" rx="6" transform="rotate(-135 400 400)" />
+  </g>
+  <!-- vertical pillars -->
+  <g fill="#0b1220" stroke="#334155" stroke-width="2">
+    <rect x="360" y="270" width="80" height="20" rx="4" />
+    <rect x="360" y="510" width="80" height="20" rx="4" />
+    <rect x="270" y="360" width="20" height="80" rx="4" />
+    <rect x="510" y="360" width="20" height="80" rx="4" />
+  </g>
+  <!-- lava rising indicator (ring) -->
+  <circle cx="400" cy="400" r="200" fill="none" stroke="#ef4444" stroke-width="6" stroke-dasharray="12 8"/>
+  <!-- legend -->
+  <g fill="#cbd5e1">
+    <text x="20" y="780" font-family="monospace" font-size="14">Center: safe platform</text>
+    <text x="20" y="796" font-family="monospace" font-size="14">Red dashed ring: lava rise threshold</text>
+  </g>
+</svg>
